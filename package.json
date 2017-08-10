@@ -1,5 +1,5 @@
 {
-  "name": "serrote",
+  "name": "boomerang",
   "version": "1.0.0",
   "description": "Aplicativo gerenciador de empréstimo de recursos audiovisuais",
   "main": "server.js",
@@ -7,9 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fgcintra/boomerang-2017-2.git"
+  },
   "author": "Fausto Gonçalves Cintra <fausto@fgcintra.pro.br>",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.15.4"
   }
 }
