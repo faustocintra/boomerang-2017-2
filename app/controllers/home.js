@@ -6,6 +6,17 @@ module.exports = function() {
       res.render('index', {nome: 'Boomerang'});
    }
 
+   controller.ajuda = function(req, res) {
+      res.render('ajuda');   
+   }
+
+   controller.login = function(req, res) {
+      res.render('login', {
+         nome: 'Boomerang',
+         mensagem: 'Informe seus dados para autenticação'
+      });
+   }
+
    return controller;
 
 }
