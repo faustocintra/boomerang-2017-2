@@ -8,4 +8,5 @@ module.exports = function(app) {
    
    app.get('/recursos', controller.listar);
    app.get('/recursos/:id', controller.obterUm);
+   app.delete('/recursos/:id', controller.excluir);
 }

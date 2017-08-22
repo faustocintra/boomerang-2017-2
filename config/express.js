@@ -1,5 +1,8 @@
 var express = require('express');
 var load = require('express-load');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+
 
 //var home = require('../app/routes/home');
 
@@ -9,10 +12,17 @@ module.exports = function() {
    //app.use(express.static('./public'));
 
    app.set('port', 3000);
-   app.set('ip', '127.0.0.1');
+   app.set('ip', '127.0.0.1'); 
 
    app.set('view engine', 'ejs');
    app.set('views', './app/views');
+
+   /* RTA para fazer com que todos os navegadores
+      entendam os verbos HTTP DELETE e PUT.
+   */
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
+  app.use(methodOverride());
 
    //home(app);
 
