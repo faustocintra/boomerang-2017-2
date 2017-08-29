@@ -1,3 +1,4 @@
+/*
 var recursos = [
    {
       '_id': 1,
@@ -20,13 +21,27 @@ var recursos = [
       'tipo': 'Laboratório de computadores'
    }
 ];
+*/
 
-module.exports = function() {
+module.exports = function(app) {
 
    var controller = {};
 
+   var Recurso = app.models.Recurso;
+
    controller.listar = function(req, res) {
-      res.json(recursos);
+   
+      Recurso.find().exec().then(
+         function(recursos) {       // Callback se der certo
+            res.json(recursos);
+         },
+         function(erro) {
+            console.error(erro);    // Callback se der errado
+            // HTTP 500: erro interno do servidor
+            res.status(500).json(erro);
+         }
+      );
+   
    };
 
    controller.obterUm = function(req, res) {

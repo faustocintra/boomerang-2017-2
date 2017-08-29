@@ -1,6 +1,13 @@
 var http = require('http');
 var express = require('./config/express');
 
+var db = require('./config/database');
+
+// Conecta-se ao MongoDB no início da aplicação.
+// A conexão é feita no servidor localhost,
+// para utilizar o banco de dados boomerang
+db('mongodb://localhost/boomerang');
+
 var app = express();
 
 /* http.createServer(
