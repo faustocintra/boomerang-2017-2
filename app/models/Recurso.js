@@ -11,7 +11,8 @@ module.exports = function() {
          type: String,
       },
       categoria: {
-         type: String,
+         type: mongoose.Schema.ObjectId,
+         ref: 'Categoria',
          required: true
       },
       patrimonio: {
