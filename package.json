@@ -23,6 +23,7 @@
     "@angular/router": "^4.4.0-RC.0",
     "@angular/router-deprecated": "^2.0.0-rc.2",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "ejs": "^2.5.7",
     "es6-shim": "^0.35.3",
     "express": "^4.15.4",

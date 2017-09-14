@@ -1,10 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 
-import { AppComponent } from './app.component';
-import { RecursosListaComponent } from './recursos-lista/recursos-lista.component';
+import { AppComponent } from './app.component'
+import { RecursosListaComponent } from './recursos-lista/recursos-lista.component'
+
+import { RoutingModule } from './app.routes'
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { RecursosListaComponent } from './recursos-lista/recursos-lista.componen
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

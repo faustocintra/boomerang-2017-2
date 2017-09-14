@@ -2,6 +2,7 @@ var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var cors = require('cors');
 
 
 //var home = require('../app/routes/home');
@@ -17,6 +18,8 @@ module.exports = function() {
    app.set('view engine', 'ejs');
    app.set('views', './app/views');
 
+   app.use(cors());
+   
    /* RTA para fazer com que todos os navegadores
       entendam os verbos HTTP DELETE e PUT.
    */

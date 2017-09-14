@@ -9,29 +9,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RecursosListaComponent implements OnInit {
 
-  titulo = 'Lista de recursos'
-
-  /*
-  recursos = [
-    'Projetor Epson 1',
-    'Laboratório de computadores 1',
-    'Laboratório de computadores 2',
-    'Controle de TV ADS 1',
-    'Rádio/Reprodutor de CD'
-  ]
-  */
-
-  recursos = []
-
-  constructor(http: HttpClient) { 
-    http.get('http://localhost:3000/recursos')
-      .subscribe(function(recursos) {
-        this.recursos = recursos;
-        console.log(recursos);
-      })
+  private titulo = 'Lista de recursos'
+  private recursos
+  
+  constructor(private http: HttpClient) { 
+    this.http.get('http://localhost:3000/recursos')
+      .subscribe(dados => this.recursos = dados)
   }
 
   ngOnInit() {
+    
   }
 
 }
