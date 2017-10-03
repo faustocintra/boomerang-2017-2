@@ -1,5 +1,16 @@
 <h2>{{titulo}}</h2>
 
-<ul>
-  <li *ngFor="let recurso of recursos">{{recurso.descricao}}</li>
-</ul>
+<table class="table table-striped">
+  <tr>
+    <th>Descrição</th>
+    <th>Especificações</th>
+    <th>Categoria</th>
+    <th>Patrimônio</th>
+  </tr>
+  <tr *ngFor="let recurso of recursos">
+    <td>{{recurso.descricao}}</td>
+    <td>{{recurso.especificacoes}}</td>
+    <td>{{recurso.categoria}}</td>
+    <td>{{recurso.patrimonio}}</td>
+  </tr>
+</table>
