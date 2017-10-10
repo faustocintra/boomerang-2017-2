@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component'
 import { RecursosListaComponent } from './recursos-lista/recursos-lista.component'
@@ -20,7 +21,8 @@ import { RecursosFormComponent } from './recursos-form/recursos-form.component'
   imports: [
     BrowserModule,
     HttpClientModule,
-    RoutingModule
+    RoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
