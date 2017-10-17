@@ -1,27 +1,3 @@
-/*
-var recursos = [
-   {
-      '_id': 1,
-      'descricao': 'Projetor 1',
-      'tipo': 'Projetor'
-   },
-   {
-      '_id': 2,
-      'descricao': 'Laboratório 3',
-      'tipo': 'Laboratório de computadores'
-   },
-   {
-      '_id': 3,
-      'descricao': 'Controle remoto ADS 2',
-      'tipo': 'Controle remoto de TV'
-   },
-   {
-      '_id': 4,
-      'descricao': 'Laboratório 1',
-      'tipo': 'Laboratório de computadores'
-   }
-];
-*/
 
 module.exports = function(app) {
 
@@ -81,6 +57,22 @@ module.exports = function(app) {
       else {
          res.status(404).send('Recurso para exclusão não encontrado');
       }
+
+   }
+
+   // Inserção de um novo recurso
+   controller.novo = function(req, res) {
+      console.log(req.body);
+      
+      Recurso.create(req.body).then(
+         function(recurso) {
+            res.status(201).json(recurso);
+         },
+         function(erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+         }
+      )
 
    }
 

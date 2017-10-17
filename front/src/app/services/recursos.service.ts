@@ -18,6 +18,10 @@ export class RecursosService {
 
   public listarTodos() {
     return this.http.get('http://localhost:3000/recursos');
-  } 
+  }
+  
+  public salvar(dados: Recurso) {
+    return this.http.put('http://localhost:3000/recursos', dados)
+  }
 
 }

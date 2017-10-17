@@ -1,4 +1,4 @@
-<form #recursosForm="ngForm">
+<form #recursosForm="ngForm" (ngSubmit)="enviar()">
 
   <div class="form-group">
     <label for="descricao">Descrição</label>
@@ -15,8 +15,11 @@
   <div class="form-group">
     <label for="categoria">Categoria</label>
     <select id="categoria" name="categoria" class="form-control"
-      [(ngModel)]="model.categoria" >
-
+      [(ngModel)]="model.categoria">
+      <option value="">(Selecione)</option>
+      <option *ngFor="let cat of categorias | async" [ngValue]="cat._id">
+        {{cat.descricao}}
+      </option>
     </select>
   </div>
 

@@ -23,11 +23,23 @@ export class RecursosFormComponent implements OnInit {
   ngOnInit() {
   
     this.model = new Recurso()
+    this.model.categoria = ''
     this.model.descricao = 'Projetor'
     this.model.especificacoes  = 'teste teste teste teste'
 
     this.categorias = this.cs.listarTodos()
 
+  }
+
+  enviar() {
+    this.rs.salvar(this.model).subscribe(
+      function(dados) {
+        console.log(dados)
+      },
+      function(erro) {
+        console.error(erro)
+      }
+    )
   }
 
 }
