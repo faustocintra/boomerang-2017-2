@@ -10,4 +10,5 @@ module.exports = function(app) {
    app.get('/recursos/:id', controller.obterUm);
    app.delete('/recursos/:id', controller.excluir);
    app.put('/recursos', controller.novo);
+   app.post('/recursos/', controller.atualizar);
 }

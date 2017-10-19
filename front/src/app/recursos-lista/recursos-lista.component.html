@@ -1,3 +1,7 @@
+<a routerLink="/recursos/novo" class="btn btn-primary btn-md">
+  Novo recurso
+</a>
+
 <h2>{{titulo}}</h2>
 
 <table class="table table-striped">
@@ -8,9 +12,13 @@
     <th>Patrimônio</th>
   </tr>
   <tr *ngFor="let recurso of recursos">
-    <td>{{recurso.descricao}}</td>
+    <td>
+      <a [routerLink]="['/recursos', recurso._id]">
+        {{recurso.descricao}}
+      </a>
+    </td>
     <td>{{recurso.especificacoes}}</td>
-    <td>{{recurso.categoria}}</td>
+    <td>{{recurso.categoria.descricao}}</td>
     <td>{{recurso.patrimonio}}</td>
   </tr>
 </table>

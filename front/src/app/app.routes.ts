@@ -20,7 +20,13 @@ const routes : Routes = [
    {
       path: 'recursos/novo',
       component: RecursosFormComponent
+   },
+
+   {
+      path: 'recursos/:id',
+      component: RecursosFormComponent
    }
+
 
 ]
 

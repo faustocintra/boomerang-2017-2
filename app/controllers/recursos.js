@@ -7,7 +7,7 @@ module.exports = function(app) {
 
    controller.listar = function(req, res) {
    
-      Recurso.find().exec().then(
+      Recurso.find().populate('categoria').exec().then(
          function(recursos) {       // Callback se der certo
             res.json(recursos);
          },
@@ -23,17 +23,15 @@ module.exports = function(app) {
    controller.obterUm = function(req, res) {
       var idRecurso = req.params.id;
 
-      var recurso = recursos.filter(function(recurso){
-         return recurso._id == idRecurso;
-      });
-
-      if(recurso[0]) {
-         // Retorna o primeiro elemento do vetor filtrado
-         res.json(recurso[0]);
-      }
-      else{
-         res.status(404).send('Recurso não encontrado');
-      }
+      Recurso.findById(idRecurso).then(
+         function(recurso) {
+            res.json(recurso);
+         },
+         function(erro) {
+            console.error(erro);
+            res.status(404).send('Recurso não encontrado');   
+         }
+      );
 
    }
 
@@ -62,8 +60,7 @@ module.exports = function(app) {
 
    // Inserção de um novo recurso
    controller.novo = function(req, res) {
-      console.log(req.body);
-      
+
       Recurso.create(req.body).then(
          function(recurso) {
             res.status(201).json(recurso);
@@ -72,7 +69,25 @@ module.exports = function(app) {
             console.error(erro);
             res.status(500).json(erro);
          }
-      )
+      );
+
+   }
+
+   controller.atualizar = function(req, res) {
+
+      console.log(req.body);
+
+      var idRecurso = req.body._id;
+
+      Recurso.findByIdAndUpdate(idRecurso, req.body).then(
+         function (recurso) {
+            res.status(200).json(recurso);
+         },
+         function (erro) {
+            console.error(erro);
+            res.status(404).json('Recurso não encontrado para atualizar');
+         }
+      );
 
    }
 

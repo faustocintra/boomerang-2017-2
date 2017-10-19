@@ -17,11 +17,23 @@ export class RecursosService {
   constructor(private http: HttpClient) { }
 
   public listarTodos() {
-    return this.http.get('http://localhost:3000/recursos');
+    return this.http.get('http://localhost:3000/recursos')
   }
   
   public salvar(dados: Recurso) {
-    return this.http.put('http://localhost:3000/recursos', dados)
+    // Recurso já existente
+    console.log(dados)
+    if(dados._id) {
+      return this.http.post('http://localhost:3000/recursos/', dados)
+    }
+    // Recurso novo
+    else {
+      return this.http.put('http://localhost:3000/recursos', dados)
+    }
+  }
+
+  public obterPorId(id: string) {
+    return this.http.get('http://localhost:3000/recursos/' + id)
   }
 
 }
