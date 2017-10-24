@@ -36,4 +36,8 @@ export class RecursosService {
     return this.http.get('http://localhost:3000/recursos/' + id)
   }
 
+  public excluir(id: string) {
+    return this.http.delete('http://localhost:3000/recursos/' + id)  
+  }
+
 }

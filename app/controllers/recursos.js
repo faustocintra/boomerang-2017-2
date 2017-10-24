@@ -39,22 +39,15 @@ module.exports = function(app) {
 
       var idRecurso = req.params.id;
 
-      // Filtra o vetor 'recursos', gerando o vetor
-      // 'remanescentes' com todos os registros, exceto
-      // o que tiver sido excluído
-      var remanescentes = recursos.filter(function(rec) {
-         return rec._id != idRecurso;
-      });
-
-      // Se houve exclusão, o tamanho do vetor 'remanescentes'
-      // será menor do que o do vetor 'recursos'
-      if(remanescentes.length < recursos.length) {
-         recursos = remanescentes;
-         res.status(200).send('Recurso excluído');
-      }
-      else {
-         res.status(404).send('Recurso para exclusão não encontrado');
-      }
+      Recurso.remove({_id: idRecurso}).exec().then(
+         function() {
+            // HTTP 204: OK, sem conteúdo
+            res.status(204).end();
+         },
+         function(erro) {
+            console.error(erro);
+         }
+      );
 
    }
 

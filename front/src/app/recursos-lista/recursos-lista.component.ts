@@ -14,11 +14,25 @@ export class RecursosListaComponent implements OnInit {
   private recursos : any
   
   constructor(private service: RecursosService) { 
-    this.service.listarTodos().subscribe(dados => this.recursos = dados)
+    
   }
 
   ngOnInit() {
-    
+    this.atualizarLista()
+  }
+
+  atualizarLista() {
+    this.service.listarTodos().subscribe(dados => this.recursos = dados)
+  }
+
+  excluir(id: string) {
+    if(confirm('Deseja realmente excluir este recurso?')) {
+      this.service.excluir(id).subscribe(
+        () => this.atualizarLista(),
+        erro => console.error(erro)
+      )
+    }
+
   }
 
 }
