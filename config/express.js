@@ -4,6 +4,9 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cors = require('cors');
 
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
 
 //var home = require('../app/routes/home');
 
@@ -29,15 +32,24 @@ module.exports = function() {
 
    //home(app);
 
+   app.use(cookieParser());
+   app.use(session({
+      // Coloque sua própria frase secreta aqui
+      secret: 'Na rua dos bobos, número 0',
+      resave: true,
+      saveUninitialized: true
+   }));
+   app.use(passport.initialize());
+   app.use(passport.session());
+
    /*
       Carrega todos os módulos de app/models,
       depois os módulos de app/controllers,
       e, por fim, os módulos de app/routes,
       "despejando" tudo na variável app
    */
-
    // cwd = change working directory
-   load('models', {cwd: 'app'})
+   load('models', { cwd: 'app' })
       .then('controllers')
       .then('routes')
       .into(app);

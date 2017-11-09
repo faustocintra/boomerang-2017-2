@@ -2,6 +2,7 @@ var http = require('http');
 var express = require('./config/express');
 
 var db = require('./config/database');
+var passport = require('./config/passport'); // CONFIRA SE TEM
 
 // Conecta-se ao MongoDB no início da aplicação.
 // A conexão é feita no servidor localhost,
@@ -9,6 +10,7 @@ var db = require('./config/database');
 db('mongodb://localhost/boomerang');
 
 var app = express();
+passport(); // CONFIRA SE TEM
 
 /* http.createServer(
    function(req, res) {
