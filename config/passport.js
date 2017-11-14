@@ -1,19 +1,42 @@
 var passport = require('passport');
+var mongoose = require('mongoose');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; /* mudou */
 
 module.exports = function() {
+
+   var Usuario = mongoose.model('Usuario');
 
    var strategy = new GoogleStrategy({
       clientID: '901303136919-67q7q41qrfnjt6u4um4ddqdb7cbsdv9p.apps.googleusercontent.com',
       clientSecret: 'Lggfetck6T3ga2cpJ9xF3oQq',
       callbackURL: 'http://localhost:3000/auth/google/callback',
-      scope: 'profile' /* acrescentado */
+      scope: 'profile email' /* acrescentado */
    },
       function (accessToken, refreshToken, profile, done) {
          
-         console.log(profile);
-         
-         return done(null, profile);
+         var userEmail = '@';
+
+         // Pega o primeiro email retornado, caso exista
+         if(profile.emails && profile.emails.length > 0) {
+            userEmail = profile.emails[0].value;
+         }
+
+         console.log('Email -------------------------> ' + userEmail);
+
+         Usuario.findOrCreate(
+            {login: profile.id},
+            {nome: profile.displayName},
+            function(erro, usuario) {
+               if(erro) {
+                  console.log(erro);
+                  return done(erro);
+               }
+               usuario.email = userEmail;
+               usuario.save();
+               return done(null /* sem erros */, usuario);
+            }
+         );
+
       }
    );
 
